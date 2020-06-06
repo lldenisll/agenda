@@ -9,10 +9,11 @@
     <form action="submit" method="POST"> {% csrf_token %}
     <div align="center">
     <label>User:</label>
-    <input type="text" name="username"><br>
+    <input type="text" name="username" size="28">
     <label>Password: </label>
-    <input type="password" name="password">
-    <button type="submit">Login</button>
+    <input type="password" name="password" size="28">
+        <br>
+    <br><button type="submit">Login</button>
         </div>
         </form>
     {% for message in messages%}

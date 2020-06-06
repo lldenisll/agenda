@@ -1,6 +1,9 @@
     {%extends "model-page.html"%}
      {% block content %}
     <h2>Appointments</h2>
+    <a href="event/">
+    <button type="button">Insert data</button>
+        </a>
         <ul style="font-size: 20px">
         {% for event in events %}
             <li>{{event.title}}-{{event.get_data_events}}</li>
