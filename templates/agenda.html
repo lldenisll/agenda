@@ -1,12 +1,26 @@
     {%extends "model-page.html"%}
      {% block content %}
-    <h2>Appointments</h2>
-    <a href="event/">
-    <button type="button">Insert data</button>
+
+    <h2>Hey {{user}} here you can check your Appointments</h2>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Description</th>
+            </tr>
+            {% for event in events %}
+            <tr>
+                <td>{{event.title}}</td>
+                <td>{{event.get_data_events}}</td>
+                <td>{{event.get_data_description}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+             </div>
+
+    <br><br>
+        <a href="event/">
+    <button class = "button" type="button">Insert data</button>
         </a>
-        <ul style="font-size: 20px">
-        {% for event in events %}
-            <li>{{event.title}}-{{event.get_data_events}}</li>
-        {% endfor %}
-        </ul>
     {% endblock %}

@@ -27,7 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+STATICFILES_DIRS=[
+"/Users/namorado/Desktop/Python/learn_python/agenda/static"
+]
 # Application definition
 
 INSTALLED_APPS = [

@@ -17,3 +17,5 @@ class Event(models.Model): #this is a parameter
 
     def  get_data_events(self):
         return self.date_event.strftime('%d/%m/%Y  %H:%M')
+    def get_data_description(self):
+        return self.description

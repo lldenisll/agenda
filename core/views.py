@@ -31,7 +31,8 @@ def list_events(request):
     #event=Event.objects.all #take all, insted can use .get(id=1) or any id
     user=request.user
     event=Event.objects.filter(user=user)
-    data={'events':event}
+    description=Event.objects.filter(user=user)
+    data={'events':event, 'description': description}
     return render(request, 'agenda.html',data)
 
 @login_required(login_url='/login/') #when not found back to login
