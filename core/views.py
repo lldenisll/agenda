@@ -1,8 +1,12 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from core.models import Event
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from datetime import datetime, timedelta
+from django.http.response import Http404, JsonResponse #Json is very good to work with JS to return lists and etc
+
 # Create your views here.
 
 def login_user(request):
@@ -30,7 +34,10 @@ def submit_login(request):
 def list_events(request):
     #event=Event.objects.all #take all, insted can use .get(id=1) or any id
     user=request.user
-    event=Event.objects.filter(user=user)
+    today=datetime.now() - timedelta(hours=1) #in order to show the events whithin 1 hour late
+
+    event=Event.objects.filter(user=user,
+                               date_event__gt=today) #in Django you cant use < or > use GT or LT (grater or lower than)
     description=Event.objects.filter(user=user)
     data={'events':event, 'description': description}
     return render(request, 'agenda.html',data)
@@ -66,7 +73,20 @@ def submit_event(request):
 
 def delete_event(request, id_evento):
     user=request.user
-    event=Event.objects.get(id=id_evento)
+    try:
+
+        event=Event.objects.get(id=id_evento)
+    except Exception:
+        raise Http404 #to raise an error to user, not a servidor error, if puting id or user incorrect
     if user == event.user:
         event.delete()
+    else:
+        raise Http404() #to raise an error to user, not a servidor error, if puting id or user incorrect
     return redirect('/')
+
+def jason_list_event(request, id_user): #to export API with user data
+    user = User.objects.get(id=id_user)
+    event = Event.objects.filter(user=user).values('id','title')
+    description = Event.objects.filter(user=user)
+    data = {'events': event, 'description': description}
+    return JsonResponse(list(event), safe=False)

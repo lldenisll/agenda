@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'x!6v_+xjp#milp1lrq1^w7i*ok_(=(4i*#ui-mwy^sg=t#y8+p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False #only true when developing, when production, turned it off!
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 STATICFILES_DIRS=[
 "/Users/namorado/Desktop/Python/learn_python/agenda/static"
@@ -108,13 +108,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

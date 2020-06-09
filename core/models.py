@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
+
 # Create your models here.
 
 
@@ -21,3 +23,9 @@ class Event(models.Model): #this is a parameter
         return self.date_event.strftime('%Y-%m-%dT%H:%M')
     def get_data_description(self):
         return self.description
+
+    def get_late_event(self):
+        if self.date_event < datetime.now():
+            return True
+        else:
+            return False

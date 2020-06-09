@@ -11,12 +11,14 @@
                 <th> Action </th>
             </tr>
             {% for event in events %}
-            <tr>
+            <tr style={% if event.get_late_event %} "color:red" {%endif%} >
+
                 <td>{{event.title}}</td>
                 <td>{{event.get_data_events}}</td>
                 <td>{{event.get_data_description}}</td>
                 <td><a href="event/?id={{ event.id }}">Edit</a> / <a href="event/delete/{{ event.id }}/">Delete</a> </td>
             </tr>
+
             {% endfor %}
         </table>
              </div>

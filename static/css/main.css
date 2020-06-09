@@ -10,6 +10,7 @@
 th, td {
   padding: 15px;
   border: 1px solid black;
+
 }
 th{
   background-color: #b3e6ff;
@@ -57,3 +58,4 @@ widht:100%;
 h2, h1{
    text-align:center
 }
+
