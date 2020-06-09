@@ -37,17 +37,36 @@ def list_events(request):
 
 @login_required(login_url='/login/') #when not found back to login
 def event(request):
-    return render(request, 'event.html')
+    id_evento = request.GET.get('id')
+    dados = {}
+    if id_evento:
+        dados['Event'] = Event.objects.get(id=id_evento)
+    return render(request, 'event.html', dados)
 
 @login_required(login_url='/login/') #when not found back to login
 def submit_event(request):
-    if request.POST:
-        title=request.POST.get('title')
-        date_event=request.POST.get('event_date')
-        description=request.POST.get('description')
-        user=request.user
+    date_event = request.POST.get('event_date')
+    description = request.POST.get('description')
+    title=request.POST.get('title')
+    user = request.user
+    id_evento = request.POST.get('id_evento')
+    if id_evento:
+        event = Event.objects.get(id=id_evento)
+        if event.user==user:
+            event.title=title
+            event.description=description
+            event.date_event=date_event
+            event.save()
+    else:
         Event.objects.create(title=title,
                              date_event=date_event,
                              description=description,
                              user=user)
+    return redirect('/')
+
+def delete_event(request, id_evento):
+    user=request.user
+    event=Event.objects.get(id=id_evento)
+    if user == event.user:
+        event.delete()
     return redirect('/')

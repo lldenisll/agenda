@@ -22,6 +22,7 @@ urlpatterns = [
     path('agenda/', views.list_events), #route
     path('agenda/event/',views.event),
     path('agenda/event/submit', views.submit_event),
+    path('agenda/event/delete/<int:id_evento>/',views.delete_event),
     path('', RedirectView.as_view(url='/agenda/')),
     path('login/',views.login_user),
     path('login/submit', views.submit_login),

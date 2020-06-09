@@ -8,12 +8,14 @@
                 <th>Title</th>
                 <th>Date</th>
                 <th>Description</th>
+                <th> Action </th>
             </tr>
             {% for event in events %}
             <tr>
                 <td>{{event.title}}</td>
                 <td>{{event.get_data_events}}</td>
                 <td>{{event.get_data_description}}</td>
+                <td><a href="event/?id={{ event.id }}">Edit</a> / <a href="event/delete/{{ event.id }}/">Delete</a> </td>
             </tr>
             {% endfor %}
         </table>
