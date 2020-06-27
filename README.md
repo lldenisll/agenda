@@ -1,1 +1,1 @@
-# Agenda usando Python e Django
+# Simple Agenda web app
